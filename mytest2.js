@@ -65,7 +65,15 @@ app.post('/users', function(req, res){
 		}*/
 	}
 });
-		
+app.delete("/users/id" function(err){ 
+	if (err) throw err;
+	var sql = "DELETE FROM utilisateurs1 WHERE id=?"
+	connection.query(sql, [1], function (err, result){
+        res.json({message : "records deleted"}); 
+        consol.loq(result);
+	}); 
+});
+
  
 app.post('/login', function(req, res){
 	 var data = {
