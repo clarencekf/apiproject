@@ -19,10 +19,17 @@ if(!err) {
     console.log("Error connecting database ...");    
 }
 });
-app.get("/users/:username", function(req,res){
+app.get("/users/data", function(req,res){
+	 var data = {
+		 nom: req.params.nom,
+		 prenom: req.params.prenom,
+		 username: req.params.username,
+		 password: req.params.password,
+		 dateNaissance: req.params.dateNaissance
 	
-	var username = req.params.username;
-	connection.query('SELECT *from utilisateurs1 WHERE username ='+username, function(err, result, fields){
+	 };
+	    
+	connection.query('SELECT data from utilisateurs1 WHERE date=?', function(err, result, fields){
 		if (err) throw err;
 		if(result.length > 0)
 			res.send('username fetched...');
